@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Bataille navale</title>
+	<style>
+td>input, label {
+	font-size: 22px;
+	width: 100%
+}
+</style>
+</h:head>
+<h:body>
+	<h1>Bataille navale</h1>
+	<!--  case = chaine (3,4) -->
+	<h:outputLabel>#{bn.message}</h:outputLabel>
+	<h:form>
+		<table border='1'>
+			<ui:repeat var='uneligne' value='#{bn.lignes}' varStatus="status">
+				<tr>
+					<ui:repeat var='unecase' value='#{uneligne}' varStatus="status">
+						<td><h:commandButton type='submit'
+								action='#{bn.selection (unecase)}'
+								style='background:#{bn.couleur(unecase)}' value='#{unecase}'></h:commandButton>
+						</td>
+					</ui:repeat>
+				</tr>
+			</ui:repeat>
+		</table>
+		<h:commandButton type='submit' action='#{bn.monreset()}' value='Reset'></h:commandButton>
+	</h:form>
+</h:body>
+</html>
+
